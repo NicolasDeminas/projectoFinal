@@ -1,0 +1,22 @@
+[
+  {
+    "nombre": "Coca Cola",
+    "descripcion": "Bebida marca coca cola",
+    "codigo": "0001",
+    "foto": "//urltococafoto",
+    "precio": 135,
+    "stock": 20,
+    "id": 1,
+    "timeStamp": "2021-11-13T13:39:37.276Z"
+  },
+  {
+    "nombre": "Coca Cola Zero",
+    "descripcion": "Bebida marca coca cola sin azucar",
+    "codigo": "0002",
+    "foto": "//urltococazerofoto",
+    "precio": 150,
+    "stock": 30,
+    "id": 2,
+    "timeStamp": "2021-11-13T13:50:34.936Z"
+  }
+]
