@@ -4,10 +4,12 @@ const { Router } = express;
 
 const router = new Router();
 
-const Cart = require("../containers/carts");
-const cart = new Cart();
-const Product = require("../containers/product");
-const product = new Product();
+const cart = require("../daos/index").carritoDao;
+
+// const Cart = require("../containers/carts");
+// const cart = new Cart();
+// const Product = require("../containers/product");
+// const product = new Product();
 
 router.post("/", async (req, res) => {
   await cart.save(req.body);

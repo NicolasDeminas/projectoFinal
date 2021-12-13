@@ -1,13 +1,17 @@
 const fs = require("fs");
 
 const writeProductFile = async (arr) => {
-  await fs.promises.writeFile("./products.txt", JSON.stringify(arr, null, 2), {
-    encoding: "utf-8",
-  });
+  await fs.promises.writeFile(
+    "./src/DB/products.txt",
+    JSON.stringify(arr, null, 2),
+    {
+      encoding: "utf-8",
+    }
+  );
 };
 
 const readProductFile = async () => {
-  let file = await fs.promises.readFile("./products.txt", {
+  let file = await fs.promises.readFile("./src/DB/products.txt", {
     encoding: "utf-8",
   });
   return file;
@@ -15,7 +19,7 @@ const readProductFile = async () => {
 
 const today = new Date(Date.now());
 
-class Contenedor {
+class ContenedorArchivo {
   constructor() {
     this.product = [];
   }
@@ -101,4 +105,4 @@ class Contenedor {
   }
 }
 
-module.exports = Contenedor;
+module.exports = ContenedorArchivo;

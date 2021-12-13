@@ -1,10 +1,13 @@
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded(false));
+
+app.use(cors());
 
 const products = require("./routes/products");
 const cart = require("./routes/shopCart");

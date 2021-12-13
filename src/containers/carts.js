@@ -1,16 +1,20 @@
 const fs = require("fs");
 
-const Product = require("../containers/product");
+const Product = require("./product");
 const product = new Product();
 
 const writeCartFile = async (arr) => {
-  await fs.promises.writeFile("./carritos.txt", JSON.stringify(arr, null, 2), {
-    encoding: "utf-8",
-  });
+  await fs.promises.writeFile(
+    "./src/DB/carritos.txt",
+    JSON.stringify(arr, null, 2),
+    {
+      encoding: "utf-8",
+    }
+  );
 };
 
 const readCartFile = async () => {
-  let file = await fs.promises.readFile("./carritos.txt", {
+  let file = await fs.promises.readFile("./src/DB/carritos.txt", {
     encoding: "utf-8",
   });
   return file;
