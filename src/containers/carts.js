@@ -33,7 +33,7 @@ class Contenedor {
       let dataFile = JSON.parse(fileExits);
       cart.id = dataFile.length + 1;
       cart.timeStamp = today;
-      cart.producto = [];
+      cart.product = [];
       dataFile.push(cart);
       this.cart = dataFile;
       writeCartFile(this.cart);
@@ -86,19 +86,18 @@ class Contenedor {
     }
   }
 
-  async update(id, arr) {
+  async update(arr) {
     let fileExists = await readCartFile();
     if (fileExists && fileExists.length >= 0) {
       let fileData = JSON.parse(fileExists);
       let pos;
       fileData.find((el, index, array) => {
-        if (el.id == id) {
+        if (el.id == arr.id) {
           pos = index;
           return pos;
         }
       });
-      let pr = await product.getById(arr.id);
-      fileData[pos].producto.push(pr);
+      fileData[pos] = arr;
       writeCartFile(fileData);
       return fileData;
     }

@@ -1,7 +1,7 @@
 let productoDao;
 let carritoDao;
 
-const db = "firebase";
+const db = "file";
 
 switch (db) {
   case "file":

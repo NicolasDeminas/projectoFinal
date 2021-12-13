@@ -18,9 +18,30 @@ class CarritoDaoMongo extends Mongo {
     return super.save(carrito);
   }
 
-  async getProduct() {}
+  async update(obj) {
+    const products = await this.coleccion.findOneAndUpdate(
+      { _id: obj._id },
+      { product: obj.product }
+    );
+    return products;
+  }
 
-  async deleteProduct() {}
+  async getProducts(id) {
+    const carrito = await this.getById(id);
+    return carrito.product;
+  }
+
+  async deleteProduct(id, idProduct) {
+    const carrito = await this.getById(id);
+    const index = carrito.product.findIndex((o) => o._id == idProduct);
+    console.log(carrito);
+    console.log(index);
+    if (index != -1) {
+      carrito.product.splice(index, 1);
+      this.update(carrito);
+    }
+    //return carrito;
+  }
 }
 
 module.exports = CarritoDaoMongo;

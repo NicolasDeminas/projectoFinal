@@ -4,6 +4,7 @@ const { Router } = express;
 
 const router = new Router();
 
+const product = require("../daos/index").productoDao;
 const cart = require("../daos/index").carritoDao;
 
 // const Cart = require("../containers/carts");
@@ -26,7 +27,10 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/:id/productos", async (req, res) => {
-  await cart.update(req.params.id, req.body);
+  const carrito = await cart.getById(req.params.id);
+  const producto = await await product.getById(req.body.id);
+  carrito.product.push(producto);
+  await cart.update(carrito);
   res.send("Producto agregado al carrito");
 });
 
