@@ -20,7 +20,8 @@ class Contenedor {
 
   async getById(id) {
     let doc = await this.collection.doc(id).get();
-    return doc;
+    const data = doc.data();
+    return { ...data, id };
   }
 
   async getAll() {
@@ -32,9 +33,15 @@ class Contenedor {
     return result;
   }
 
-  async update() {}
+  async update(id, obj) {
+    const product = await this.collection.doc(id).set(obj);
+    return product;
+  }
 
-  async delete() {}
+  async delete(id) {
+    const product = await this.collection.doc(id).delete();
+    return product;
+  }
 }
 
 module.exports = Contenedor;

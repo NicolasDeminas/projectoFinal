@@ -1,7 +1,7 @@
 let productoDao;
 let carritoDao;
 
-const db = "file";
+const db = "firebase";
 
 switch (db) {
   case "file":
@@ -20,9 +20,9 @@ switch (db) {
 
   case "firebase":
     const ProductFirebase = require("./products/productDaosFirebase");
-    //const CarritoFirebase = require("./carritos/carritoDaosFirebase");
+    const CarritoFirebase = require("./carritos/carritoDaosFirebase");
     productoDao = new ProductFirebase();
-    //carritoDao = new CarritoFirebase();
+    carritoDao = new CarritoFirebase();
     break;
 }
 

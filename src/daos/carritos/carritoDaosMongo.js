@@ -1,4 +1,4 @@
-const Mongo = require("../../containers/mongoProduct");
+const Mongo = require("../../containers/mongo");
 
 class CarritoDaoMongo extends Mongo {
   constructor() {
@@ -34,8 +34,6 @@ class CarritoDaoMongo extends Mongo {
   async deleteProduct(id, idProduct) {
     const carrito = await this.getById(id);
     const index = carrito.product.findIndex((o) => o._id == idProduct);
-    console.log(carrito);
-    console.log(index);
     if (index != -1) {
       carrito.product.splice(index, 1);
       this.update(carrito);

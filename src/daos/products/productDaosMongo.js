@@ -1,4 +1,4 @@
-const Mongo = require("../../containers/mongoProduct");
+const Mongo = require("../../containers/mongo");
 
 class ProductDaoMongo extends Mongo {
   constructor() {

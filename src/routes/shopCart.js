@@ -26,10 +26,17 @@ router.get("/", async (req, res) => {
   res.send(await cart.getAll());
 });
 
+router.get("/:id", async (req, res) => {
+  res.send(await cart.getById(req.params.id));
+});
+
 router.post("/:id/productos", async (req, res) => {
   const carrito = await cart.getById(req.params.id);
   const producto = await await product.getById(req.body.id);
+  //console.log(carrito);
+  //console.log(producto);
   carrito.product.push(producto);
+  //console.log(carrito);
   await cart.update(carrito);
   res.send("Producto agregado al carrito");
 });
