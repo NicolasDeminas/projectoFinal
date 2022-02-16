@@ -1,4 +1,5 @@
 const express = require("express");
+const auth = require("../middlewares/auth");
 
 const { Router } = express;
 
@@ -18,7 +19,7 @@ const product = require("../daos/index").productoDao;
 
 // const product = new Product();
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   res.json(await product.getAll());
 });
 
@@ -26,13 +27,13 @@ router.get("/:id", async (req, res) => {
   res.send(await product.getById(req.params.id));
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   if (req.query.admin === "true") {
     await product.save(req.body);
     res.send("Producto guardado correctamente");
     return;
   }
-  verificarAutorizacion(res);
+  // verificarAutorizacion(res);
 });
 
 router.put("/:id", async (req, res) => {

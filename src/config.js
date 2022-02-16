@@ -21,4 +21,5 @@ module.exports = {
     client_x509_cert_url:
       "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-f2gkw%40coderecommerce-9cec3.iam.gserviceaccount.com",
   },
+  sessionSecret: "secreto123456session",
 };
