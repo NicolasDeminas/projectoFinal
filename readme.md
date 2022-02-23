@@ -5,6 +5,8 @@ SESSION_SECRET = secreto123456session
 PRIVATE_KEY = llaveprivadaparajwt
 MAIL = deminas.nicolas@gmail.com
 MODE = FORK
+ACCOUNTSID = ACc212e539d6e34724834e1e5b8456bacf
+AUTHTOKEN = d36fa8281efbd49b4f938d7e835eb775
 
 Las rutas son:
 POST/api/usuarios/login ----> devuelve un token, necesario para acceder a las demas rutas
