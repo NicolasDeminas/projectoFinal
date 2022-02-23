@@ -1,13 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const passport = require("./config/passport");
-const session = require("express-session");
 
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
 const { infoLogger, warningLogger } = require("./config/loggers");
-
-const mongoStore = require("connect-mongo");
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -27,20 +23,6 @@ if (clusterMode && cluster.isMaster) {
 } else {
   app.use(express.json());
   app.use(express.urlencoded(false));
-
-  app.use(
-    session({
-      store: mongoStore.create({
-        mongoUrl: require("./config/config").mongodb.cnxStr,
-      }),
-      secret: require("./config/config").sessionSecret,
-      saveUninitialized: true,
-      resave: true,
-    })
-  );
-
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   const whitelist = ["https://localhost:3000"];
 

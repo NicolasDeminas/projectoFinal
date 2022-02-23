@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const accountSID = process.env.ACCOUNTSID;
-const authToken = AUTHTOKEN;
+const authToken = process.env.AUTHTOKEN;
 
 const client = twilio(accountSID, authToken);
 
