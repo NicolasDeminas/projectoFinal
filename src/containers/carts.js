@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { infoLogger } = require("../config/loggers");
 
 const Product = require("./product");
 const product = new Product();
@@ -37,7 +38,7 @@ class Contenedor {
       dataFile.push(cart);
       this.cart = dataFile;
       writeCartFile(this.cart);
-      console.log(`Carrito guardado con id:${cart.id}`);
+      infoLogger.info(`Carrito guardado con id:${cart.id}`);
     } else {
       cart.id = 1;
       cart.timeStamp = today;
@@ -66,7 +67,6 @@ class Contenedor {
     let fileExists = await readCartFile();
     if (fileExists && fileExists.length >= 0) {
       let fileData = JSON.parse(fileExists);
-      //console.log(fileData.length);
       return fileData;
     }
   }
@@ -135,8 +135,6 @@ class Contenedor {
         }
       });
       fileData[pos].producto.splice(pr, 1);
-      //console.log(fileData[pos]);
-      //console.log(fileData);
       writeCartFile(fileData);
       return fileData;
     }

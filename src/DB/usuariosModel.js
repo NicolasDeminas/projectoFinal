@@ -33,6 +33,15 @@ const usuarioSchema = new Schema({
     type: String,
     required: true,
   },
+  carrito: {
+    type: Schema.ObjectId,
+    ref: "Carts",
+  },
+  role: {
+    type: String,
+    required: true,
+    default: "User",
+  },
 });
 
 const userModel = model("Usuarios", usuarioSchema);

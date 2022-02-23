@@ -17,7 +17,6 @@ class CarritoDaoFirebase extends Firebase {
     }
     obj.id = id;
     obj.product = [];
-    //console.log(obj);
     //obj.push({ product: [] });
     return super.save(obj);
   }

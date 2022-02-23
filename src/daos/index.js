@@ -15,8 +15,10 @@ switch (db) {
   case "mongo":
     const ProductMongo = require("./products/productDaosMongo");
     const CarritoMongo = require("./carritos/carritoDaosMongo");
+    const UsuarioMongo = require("./usuarios/usuariosDaosMongo");
     productoDao = new ProductMongo();
     carritoDao = new CarritoMongo();
+    usuarioDao = new UsuarioMongo();
     break;
 
   case "firebase":
@@ -27,4 +29,4 @@ switch (db) {
     break;
 }
 
-module.exports = { productoDao, carritoDao };
+module.exports = { productoDao, carritoDao, usuarioDao };

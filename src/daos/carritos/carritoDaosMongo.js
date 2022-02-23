@@ -1,3 +1,4 @@
+const { Schema } = require("mongoose");
 const Mongo = require("../../containers/mongo");
 
 class CarritoDaoMongo extends Mongo {
@@ -7,23 +8,30 @@ class CarritoDaoMongo extends Mongo {
         type: Date,
         default: Date.now,
       },
-      product: {
-        type: [],
-        required: true,
-      },
+      product: [
+        {
+          type: Schema.ObjectId,
+          ref: "Product",
+        },
+      ],
     });
   }
 
-  async save(carrito = { product: [] }) {
+  async save(carrito) {
     return super.save(carrito);
   }
 
-  async update(obj) {
+  async update(carrito, producto) {
     const products = await this.coleccion.findOneAndUpdate(
-      { _id: obj._id },
-      { product: obj.product }
+      { _id: carrito },
+      { product: producto }
     );
     return products;
+  }
+
+  async getById(id) {
+    let carrito = await this.coleccion.findById({ _id: id });
+    return carrito;
   }
 
   async getProducts(id) {
@@ -33,12 +41,17 @@ class CarritoDaoMongo extends Mongo {
 
   async deleteProduct(id, idProduct) {
     const carrito = await this.getById(id);
-    const index = carrito.product.findIndex((o) => o._id == idProduct);
+    const index = carrito.product.findIndex(
+      (pr) => JSON.stringify(pr._id) == idProduct
+    );
+    //console.log(index);
     if (index != -1) {
       carrito.product.splice(index, 1);
-      this.update(carrito);
+      //console.log(carrito);
+      this.update(id, carrito);
     }
-    //return carrito;
+    //console.log(carrito.product);
+    return carrito;
   }
 }
 

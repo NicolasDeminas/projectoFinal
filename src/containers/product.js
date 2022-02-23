@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { infoLogger } = require("../config/loggers");
 
 const writeProductFile = async (arr) => {
   await fs.promises.writeFile(
@@ -33,7 +34,7 @@ class ContenedorArchivo {
       dataFile.push(product);
       this.pr = dataFile;
       writeProductFile(this.pr);
-      console.log(`Producto guardado con id:${product.id}`);
+      infoLogger.info(`Producto guardado con id:${product.id}`);
     } else {
       product.id = 1;
       product.timeStamp = today;
@@ -61,7 +62,7 @@ class ContenedorArchivo {
     let fileExists = await readProductFile();
     if (fileExists && fileExists.length >= 0) {
       let fileData = JSON.parse(fileExists);
-      //console.log(fileData.length);
+
       return fileData;
     }
   }
@@ -84,7 +85,7 @@ class ContenedorArchivo {
       fileData[pos].foto = arr.foto;
       fileData[pos].precio = arr.precio;
       fileData[pos].stock = arr.stock;
-      console.log(fileData);
+
       writeProductFile(fileData);
       //return fileData;
     }
