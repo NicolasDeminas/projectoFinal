@@ -1,15 +1,15 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
 const { infoLogger, warningLogger } = require("./config/loggers");
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT
 
-const dotenv = require("dotenv");
-dotenv.config();
 
 const clusterMode = process.env.MODE == "CLUSTER";
 
